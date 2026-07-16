@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Planning docs and project config (local only)
+/docs/
+
+*.md
+!README.md
+
+# Claude Code (local tooling config)
+/.claude/
