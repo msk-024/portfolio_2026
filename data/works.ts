@@ -181,38 +181,30 @@ export const works: Work[] = [
     challenge:
       "紙・Word・Excel の手順書があちこちで複製され、「どれが最新か」「いつ・誰が更新したか」「そもそも該当の手順がどこにあるか」が分からない、という現場の問題を解決したかった。",
     solution:
-      "既存の手順ファイル（Word / Excel）を読み込んで登録でき、新規もテンプレートに沿って入力するだけ。全文検索・カテゴリ分けで目的の手順にすぐ辿り着ける。閲覧は登録不要／編集・新規作成のみログイン必須という権限設計とし、改ざん防止のため履歴テーブルは INSERT のみ（UPDATE・DELETE を RLS で禁止）、削除は論理削除のみとして Supabase の RLS で安全性を担保している。手順内の記載箇所を教えてくれる AI 検索も設計中（実装予定）。",
+      "既存の手順ファイル（Word / Excel）を読み込んで登録でき、新規もテンプレートに沿って入力するだけ。全文検索・カテゴリ分けで目的の手順にすぐ辿り着ける。閲覧は登録不要／編集・新規作成のみログイン必須という権限設計とし、改ざん防止のため履歴テーブルは INSERT のみ（UPDATE・DELETE を RLS で禁止）、削除は論理削除のみとして Supabase の RLS で安全性を担保している。",
     demoUrl: "https://tejun.vercel.app",
     githubUrl: "https://github.com/msk-024/tejun",
-    // ↓↓ 画像が用意できたら各 src を "/works/tejun/screen-1.webp" 〜 "screen-4.webp" に差し替えてください（今はグレー表示）
     gallery: [
       {
-        type: "page",
-        src: "/works/placeholder.jpg",
-        alt: "TEJUN の手順一覧画面",
-        title: "手順一覧",
-        description: "部署・手技ごとに分類された手順書を横断検索。",
+        type: "screen-wide",
+        src: "/works/tejun/screen-1.webp",
+        alt: "TEJUN の手順書一覧・検索画面",
+        title: "手順一覧・検索",
+        description: "タイトル・本文・カテゴリで横断検索。",
       },
       {
-        type: "page",
-        src: "/works/placeholder.jpg",
-        alt: "TEJUN の AI 検索画面",
-        title: "AI検索",
-        description: "手順内の記載箇所を AI が案内（実装予定）。",
+        type: "screen-wide",
+        src: "/works/tejun/screen-2.webp",
+        alt: "TEJUN の手順書作成・取り込み画面",
+        title: "作成・取り込み",
+        description: "Word・Excel を取り込み、Web エディタで編集。",
       },
       {
-        type: "page",
-        src: "/works/placeholder.jpg",
-        alt: "TEJUN の編集・新規作成画面",
-        title: "編集・新規作成",
-        description: "テンプレートと WYSIWYG エディタで手順を作成・編集。",
-      },
-      {
-        type: "page",
-        src: "/works/placeholder.jpg",
+        type: "screen-wide",
+        src: "/works/tejun/screen-3.webp",
         alt: "TEJUN の変更履歴画面",
         title: "変更履歴",
-        description: "誰が・いつ・何を変えたかを差分で確認。",
+        description: "更新日時を自動記録し、差分で管理。印刷にも対応。",
       },
     ],
   },
@@ -484,6 +476,38 @@ export const works: Work[] = [
     ],
   },
   {
+    id: "dm-agusa",
+    slug: "dm-agusa",
+    title: "阿草健吾　個展DM",
+    category: "デザイン",
+    type: "design",
+    description: "阿草健吾の個展のDMです。",
+    image: "/works/dm-agusa/thumb.webp",
+    tech: ["Canva"],
+    overview:
+      "阿草健吾氏の芸術作品が際立つようにお知らせなどはシンプルに配置し、洗練されたデザインを目指しました。",
+    role: "DMデザイン",
+    period: "2025年2月",
+    challenge:
+      "阿草健吾の作品の魅力を１枚で伝え、個展へ足を運んでいただくこと。",
+    solution:
+      "作品を主役に、他は必要な情報のみをシンプルに配置。",
+    gallery: [
+      {
+        type: "poster",
+        src: "/works/dm-agusa/front.webp",
+        alt: "阿草健吾　個展DM（表面）",
+        title: "表面",
+      },
+      {
+        type: "poster",
+        src: "/works/dm-agusa/back.webp",
+        alt: "阿草健吾　個展DM（裏面）",
+        title: "裏面",
+      },
+    ],
+  },
+  {
     id: "illustration",
     slug: "illustration",
     title: "イラスト",
@@ -494,8 +518,8 @@ export const works: Work[] = [
     image: "/works/placeholder.jpg",
     tech: [],
     overview: "イラスト作品は別サイトで公開しています。",
-    // ↓ 別サイトの URL ができたら "#" を差し替えてください（カードがそのサイトへ遷移します）
-    externalUrl: "#",
+    // ↓ 今はinstagramだが、別サイトができたら URL をさし替えてください（カードがそのサイトへ遷移します）
+    externalUrl: "https://www.instagram.com/mo0_ch1/",
     gallery: [],
   },
 ];

@@ -52,6 +52,46 @@ const skillGroups = [
   },
 ] as const;
 
+const CONTACT_EMAIL = "mo990.moch1@gmail.com";
+
+/**
+ * 問い合わせ記入テンプレート（mailto の本文とページ表示で共用）。
+ * 必須は最小限にし、全項目に記入例を添えて書く負担を下げる。
+ */
+const CONTACT_SECTIONS = [
+  {
+    label: "【必須】",
+    items: [
+      "お名前 / 会社・団体名：",
+      "ご連絡先（メール）：",
+      "ご依頼の種類：（Webサイト / Webアプリ / WordPress / LP / デザイン / イラスト / その他）",
+      "ご依頼の目的：（例：集客を増やしたい、業務を効率化したい）",
+      "ご依頼の内容：（例：美容室の集客用LPを1ページ作りたい）",
+      "ご希望の納期：（例：2026年3月末まで / 相談したい）",
+    ],
+  },
+  {
+    label: "【任意】※わかる範囲で構いません",
+    items: [
+      "ご予算：（例：10万円程度 / 相談したい）",
+      "規模・ご希望の機能：（例：5ページ程度、お問い合わせフォーム希望）",
+      "ご用意できる素材：（例：写真あり / 原稿は相談したい）",
+      "参考サイト・イメージ：（URL、または「◯◯のような雰囲気」など）",
+      "その他ご要望：",
+    ],
+  },
+] as const;
+
+/** テンプレートを本文にプリセットした mailto リンク */
+const CONTACT_MAILTO =
+  `mailto:${CONTACT_EMAIL}` +
+  `?subject=${encodeURIComponent("制作のご相談")}` +
+  `&body=${encodeURIComponent(
+    CONTACT_SECTIONS.map((s) => [s.label, ...s.items].join("\r\n")).join(
+      "\r\n\r\n",
+    ),
+  )}`;
+
 function SectionLabel({ children }: { children: string }) {
   return (
     <p
@@ -93,7 +133,7 @@ export default function ProfilePage() {
                     color: "var(--color-text-soft)",
                   }}
                 >
-                  望月 美咲
+                  望月 みさき
                 </p>
                 <p
                   className="text-[14px] leading-[1.9] tracking-[0.06em] mb-8"
@@ -102,7 +142,7 @@ export default function ProfilePage() {
                     color: "var(--color-text-soft)",
                   }}
                 >
-                  看護師としての経験を活かし、
+                  課題解決を得意とする視点を活用して、
                   <br />
                   Web制作・アプリ開発・AI活用で、
                   <br />
@@ -112,7 +152,7 @@ export default function ProfilePage() {
                 </p>
                 <div className="flex flex-col gap-3">
                   <a
-                    href="#"
+                    href="https://github.com/msk-024"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[12px] tracking-[1px] hover:opacity-50 transition-opacity w-fit"
@@ -125,7 +165,7 @@ export default function ProfilePage() {
                     GitHub →
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/mo0_ch1/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[12px] tracking-[1px] hover:opacity-50 transition-opacity w-fit"
@@ -251,8 +291,8 @@ export default function ProfilePage() {
                   メールよりお気軽にご連絡ください。
                 </p>
                 <a
-                  href="mailto:mo990.moch1@gmail.com"
-                  aria-label="メールでお問い合わせする"
+                  href={CONTACT_MAILTO}
+                  aria-label="テンプレートを入力済みの状態でメールを作成する"
                   className="inline-flex items-center justify-center px-8 py-3 rounded-full hover:opacity-70 transition-opacity"
                   style={{
                     fontFamily: "var(--font-jp)",
@@ -265,6 +305,70 @@ export default function ProfilePage() {
                 >
                   メールで相談する
                 </a>
+
+                {/* 記入テンプレート（ボタンで本文にプリセット済み。コピペ用にも表示） */}
+                <div className="mt-8">
+                  <p
+                    className="text-[13px] leading-[1.9] tracking-[0.06em] mb-3"
+                    style={{
+                      fontFamily: "var(--font-jp)",
+                      color: "var(--color-text-soft)",
+                    }}
+                  >
+                    ボタンを押すと、下記のテンプレートを入力済みの状態でメールが開きます。
+                    <br />
+                    うまく開かない場合は、下記のアドレス宛に内容をコピーしてお送りください。
+                  </p>
+
+                  {/* メールアドレス（mailto が使えない環境でも送れるよう明示） */}
+                  <p
+                    className="text-[13px] tracking-[0.06em] mb-4"
+                    style={{ fontFamily: "var(--font-jp)" }}
+                  >
+                    <span style={{ color: "var(--color-text-soft)" }}>
+                      メールアドレス：
+                    </span>
+                    <span
+                      className="select-all"
+                      style={{
+                        fontFamily: "var(--font-ui)",
+                        color: "var(--color-text)",
+                      }}
+                    >
+                      {CONTACT_EMAIL}
+                    </span>
+                  </p>
+                  <div
+                    className="flex flex-col gap-5 rounded-2xl p-4 md:p-5"
+                    style={{ border: "1px solid var(--color-border)" }}
+                  >
+                    {CONTACT_SECTIONS.map((section) => (
+                      <div key={section.label}>
+                        <p
+                          className="text-[11px] tracking-[0.08em] mb-1.5"
+                          style={{
+                            fontFamily: "var(--font-jp)",
+                            color: "var(--color-text)",
+                          }}
+                        >
+                          {section.label}
+                        </p>
+                        {section.items.map((line) => (
+                          <p
+                            key={line}
+                            className="text-[13px] leading-loose tracking-[0.04em]"
+                            style={{
+                              fontFamily: "var(--font-jp)",
+                              color: "var(--color-text-soft)",
+                            }}
+                          >
+                            {line}
+                          </p>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </section>
             </div>
           </div>

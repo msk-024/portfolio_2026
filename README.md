@@ -29,24 +29,6 @@
 - **静的生成** — `generateStaticParams` + `dynamicParams = false` で全詳細ページを事前生成
 - **アクセシビリティ** — セマンティックな見出し構造、`aria-*` 属性、キーボード操作、`prefers-reduced-motion` 対応
 
-## セットアップ
-
-```bash
-npm install
-npm run dev
-```
-
-http://localhost:3000 で起動します。
-
-## スクリプト
-
-| コマンド            | 内容                         |
-| ------------------- | ---------------------------- |
-| `npm run dev`       | 開発サーバー起動             |
-| `npm run build`     | 本番ビルド                   |
-| `npm run start`     | 本番サーバー起動             |
-| `npm run lint`      | ESLint                       |
-| `npm run typecheck` | 型チェック（`tsc --noEmit`） |
 
 ## ディレクトリ構成
 

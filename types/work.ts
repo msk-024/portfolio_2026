@@ -10,9 +10,10 @@ export type WorkType = "app" | "web" | "wordpress" | "design" | "illustration";
  * - full:   LP 全体などの縦長画像（枠に入れず全幅で全体を見せる）
  * - mobile: スマホ向けLPなど縦長画像（スマホ幅で中央寄せ・全体を見せる）
  * - poster: チラシ・ポスターなど縦長の印刷物（やや広めの幅で中央寄せ・全体を見せる）
- * - screen: アプリ画面（9:16 の縦長枠を横スクロールで並べる）
- * - page:   Web ページのキャプチャ（16:10 枠でグリッド表示）
- * - design: デザイン・イラスト作品（正方形カードでグリッド表示）
+ * - screen:      スマホの完成モック画像（枠なし・そのまま・横スクロール）
+ * - screen-wide: PC など横長の完成モック画像（枠なし・そのまま・横スクロール）
+ * - page:        Web ページのキャプチャ（16:10 枠でグリッド表示）
+ * - design:      デザイン・イラスト作品（正方形カードでグリッド表示）
  */
 export type GalleryImageType =
   | "hero"
@@ -21,6 +22,7 @@ export type GalleryImageType =
   | "mobile"
   | "poster"
   | "screen"
+  | "screen-wide"
   | "page"
   | "design";
 

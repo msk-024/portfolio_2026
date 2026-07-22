@@ -6,7 +6,10 @@ import type { GalleryImageType, GalleryItem } from "@/types/work";
  * full / mobile は枠に入れず、画像の縦横比のまま全体を見せる（下の分岐で処理）。
  */
 const FRAME_STYLES: Record<
-  Exclude<GalleryImageType, "full" | "mobile" | "poster" | "screen">,
+  Exclude<
+    GalleryImageType,
+    "full" | "mobile" | "poster" | "screen" | "screen-wide"
+  >,
   { aspect: string; rounded: string; image: string }
 > = {
   hero: {
@@ -66,12 +69,13 @@ type Props = {
 export default function GalleryImage({ item, sizes }: Props) {
   const isPlaceholder = item.src.includes("placeholder");
 
-  // ── screen: 完成済みモック画像をそのまま表示（枠・余白・背景なし = App Store風）──
-  if (item.type === "screen") {
+  // ── screen / screen-wide: 完成済みモック画像をそのまま表示（枠・余白・背景なし = App Store風）──
+  if (item.type === "screen" || item.type === "screen-wide") {
+    const isWide = item.type === "screen-wide";
     if (isPlaceholder) {
       return (
         <div
-          className="aspect-[9/16] w-full rounded-[16px]"
+          className={`${isWide ? "aspect-[16/10]" : "aspect-[9/16]"} w-full rounded-[16px]`}
           role="img"
           aria-label={`${item.alt}（準備中）`}
           style={{ backgroundColor: "var(--color-border)" }}
@@ -82,10 +86,15 @@ export default function GalleryImage({ item, sizes }: Props) {
       <Image
         src={item.src}
         alt={item.alt}
-        width={1080}
-        height={1440}
+        width={isWide ? 1600 : 1080}
+        height={isWide ? 1000 : 1440}
         className="h-auto w-full rounded-[16px]"
-        sizes={sizes ?? "(max-width: 640px) 60vw, 210px"}
+        sizes={
+          sizes ??
+          (isWide
+            ? "(max-width: 640px) 88vw, 440px"
+            : "(max-width: 640px) 60vw, 210px")
+        }
       />
     );
   }

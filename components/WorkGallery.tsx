@@ -3,19 +3,21 @@ import type { GalleryItem, Work } from "@/types/work";
 
 /**
  * 画像タイプごとの表示バケットを決める。
- * - full:   全幅で縦に積む（hero / mockup / full）
- * - screen: スマホ縦画面を横スクロールで並べる（screen）
- * - grid:   横長・正方形をグリッドで並べる（page / design）
+ * - full:        全幅で縦に積む（hero / mockup / full）
+ * - screen:      スマホ縦画面を横スクロールで並べる（screen）
+ * - screen-wide: PC横長画面を横スクロールで並べる（screen-wide）
+ * - grid:        横長・正方形をグリッドで並べる（page / design）
  */
 function bucketOf(
   item: GalleryItem,
-): "full" | "mobile" | "poster" | "screen" | "grid" {
+): "full" | "mobile" | "poster" | "screen" | "screen-wide" | "grid" {
   if (item.type === "hero" || item.type === "mockup" || item.type === "full") {
     return "full";
   }
   if (item.type === "mobile") return "mobile";
   if (item.type === "poster") return "poster";
   if (item.type === "screen") return "screen";
+  if (item.type === "screen-wide") return "screen-wide";
   return "grid";
 }
 
@@ -60,6 +62,9 @@ export default function WorkGallery({ work }: { work: Work }) {
   const mobileItems = work.gallery.filter((i) => bucketOf(i) === "mobile");
   const posterItems = work.gallery.filter((i) => bucketOf(i) === "poster");
   const screenItems = work.gallery.filter((i) => bucketOf(i) === "screen");
+  const screenWideItems = work.gallery.filter(
+    (i) => bucketOf(i) === "screen-wide",
+  );
   const gridItems = work.gallery.filter((i) => bucketOf(i) === "grid");
 
   return (
@@ -105,6 +110,28 @@ export default function WorkGallery({ work }: { work: Work }) {
               <GalleryFigure
                 item={item}
                 sizes="(max-width: 640px) 60vw, 210px"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* PC横長画面: 横並び（画面幅を超えたら横スクロール） */}
+      {screenWideItems.length > 0 && (
+        <div
+          className="flex gap-4 md:gap-5 overflow-x-auto pb-2"
+          tabIndex={0}
+          role="group"
+          aria-label="アプリ画面（横スクロールで閲覧できます）"
+        >
+          {screenWideItems.map((item) => (
+            <div
+              key={`${item.type}-${item.title}`}
+              className="shrink-0 w-85 sm:w-110"
+            >
+              <GalleryFigure
+                item={item}
+                sizes="(max-width: 640px) 88vw, 440px"
               />
             </div>
           ))}
