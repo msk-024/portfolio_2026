@@ -19,8 +19,8 @@ export default function WorkCard({ work, priority = false }: Props) {
         transition: "transform 0.2s ease, box-shadow 0.2s ease",
       }}
     >
-      {/* 画像エリア — SP は 4:3 固定、PC(グリッド) はセル高に合わせて伸縮 */}
-      <div className="relative aspect-[4/3] md:aspect-auto md:flex-1 md:min-h-0">
+      {/* 画像エリア — SP は 16:9 固定、PC(グリッド) はセル高に合わせて伸縮 */}
+      <div className="relative aspect-video md:aspect-auto md:flex-1 md:min-h-0">
         {isPlaceholder ? (
           <div
             className="absolute inset-0"

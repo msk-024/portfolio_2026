@@ -11,7 +11,7 @@ const radley = Radley({
 export const metadata: Metadata = {
   title: "Misaki Mochizuki | Portfolio",
   description:
-    "課題解決のための視点を活かしたWeb制作・アプリ開発・デザインに取り組んでいます。",
+    "課題解決を得意とする視点でWeb制作・アプリ開発・デザインに取り組んでいます。",
 };
 
 export default function RootLayout({

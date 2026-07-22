@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 
 const career = [
-  "看護師として医療現場に従事",
+  "医療従事者として医療現場に従事",
   "子供の誕生とプログラミング学習が必修になったことをきっかけにWeb制作を学び始める",
-  "産業看護師をしながらフリーランスとしてWeb制作を開始",
+  "本業の傍ら、フリーランスとしてWeb制作を開始",
   "Webアプリ開発・AI活用の学習と制作を継続",
 ] as const;
 
@@ -142,7 +142,7 @@ export default function ProfilePage() {
                     color: "var(--color-text-soft)",
                   }}
                 >
-                  課題解決を得意とする視点を活用して、
+                  課題解決を得意とする視点で、
                   <br />
                   Web制作・アプリ開発・AI活用で、
                   <br />
